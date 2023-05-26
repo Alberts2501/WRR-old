@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('net_users', function (Blueprint $table) {
             $table->id('net_user_id');
             $table->timestamp('date_of_connection');
-            $table->bigIncrements('living_id');
-            $table->foreign('living_id')->references('livings')->on('living_id');
+            $table->bigInteger('living_id');
+            $table->foreign('living_id')->references('living_id')->on('livings');
         });
     }
 

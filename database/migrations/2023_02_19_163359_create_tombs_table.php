@@ -14,8 +14,9 @@ return new class extends Migration
         Schema::create('tombs', function (Blueprint $table) {
             $table->id('tomb_id');
             $table->smallInteger('place_nr');
-            $table->bigIncrements('deceased_id');
-            $table->foreign('deceased_id')->references('deceaseds')->on('deceased_id');
+            $table->bigInteger('deceased_id');
+            $table->foreign('deceased_id')->references('deceased_id')->on('deceaseds');
+            
         });
     }
 

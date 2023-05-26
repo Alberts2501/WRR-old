@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id('living_id');
             $table->string('e_mail', 50);
             $table->char('phone_number', 12);
-            $table->bigIncrements('man_id');
-            $table->foreign('man_id')->references('men')->on('man_id');
+            $table->bigInteger('man_id');
+            $table->foreign('man_id')->references('man_id')->on('men');
         });
     }
 

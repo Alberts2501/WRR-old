@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('graveyards', function (Blueprint $table) {
             $table->id('graveyard_id');
             $table->string('name', 30);
-            $table->bigIncrements('tomb_id');
-            $table->foreign('tomb_id')->references('tombs')->on('tomb_id');
+            $table->bigInteger('tomb_id');
+            $table->foreign('tomb_id')->references('tomb_id')->on('tombs');
         });
     }
 

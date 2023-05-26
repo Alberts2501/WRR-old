@@ -16,10 +16,10 @@ return new class extends Migration
             $table->date('birthday');
             $table->date('date_of_death');
             $table->date('funeral_day');
-            $table->bigIncrements('man_id');
-            $table->bigIncrements('net_user_id');
-            $table->foreign('man_id')->references('men')->on('man_id');
-            $table->foreign('net_user_id')->references('net_users')->on('net_user_id');
+            $table->bigInteger('man_id');
+            $table->bigInteger('net_user_id');
+            $table->foreign('man_id')->references('man_id')->on('men');
+            $table->foreign('net_user_id')->references('net_user_id')->on('net_users'); 
         });
     }
 
