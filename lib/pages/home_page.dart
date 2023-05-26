@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:we_are_remebering/maindrawer.dart';
+import 'package:we_are_remebering/pages/add_tomb.dart';
 import 'package:we_are_remebering/pages/homepage.dart';
 import 'package:we_are_remebering/pages/add_page.dart';
 import 'package:we_are_remebering/pages/search_page.dart';
@@ -21,10 +22,40 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void _showBottomSheet() {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+            ListTile(
+              title: Text('Add deceased'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddDecesedPage()));
+              },
+            ),
+            ListTile(
+              title: Text('Add tomb'),
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddTombPage()));
+              },
+            ),
+          ],
+          );
+        }
+        );
+  }
+
   final List<Widget> _pages = [
     UserHome(),
     AddDecesedPage(),
     SearchPage(),
+    AddTombPage(),
   ];
 
   @override
@@ -45,10 +76,17 @@ class _HomePageState extends State<HomePage> {
       body: _pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
-        onTap: _navigateBottomBar,
+        onTap: (index) => {
+          if (index == 0 || index == 2) {
+            _navigateBottomBar(index)
+          }
+          else {
+            _showBottomSheet()
+          }
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home',),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add deceased',),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add',),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
         ],
       ),

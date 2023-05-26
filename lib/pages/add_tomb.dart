@@ -1,7 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:we_are_remebering/pages/add_page_part_2.dart';
+import 'package:we_are_remebering/pages/add_page.dart';
+import 'package:we_are_remebering/maindrawer.dart';
+import 'package:we_are_remebering/pages/add_tomb.dart';
+import 'package:we_are_remebering/pages/homepage.dart';
+import 'package:we_are_remebering/pages/search_page.dart';
 
-class AddDecesedPage extends StatelessWidget {
+class AddTombPage extends StatefulWidget {
+  const AddTombPage({Key? key}) : super(key: key);
+
+  @override
+  State<AddTombPage> createState() => _AddTombPageState();
+}
+
+class _AddTombPageState extends State<AddTombPage>{
+
+  int _selectedIndex = 0;
+
+  void _navigateBottomBar(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  void _showBottomSheet() {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext context) {
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ListTile(
+                title: Text('Add deceased'),
+                onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddDecesedPage()));
+                },
+              ),
+              ListTile(
+                title: Text('Add tomb'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AddTombPage()));
+                },
+              ),
+            ],
+          );
+        }
+    );
+  }
+
+  final List<Widget> _pages = [
+    UserHome(),
+    AddDecesedPage(),
+    SearchPage(),
+    AddTombPage(),
+  ];
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,14 +70,36 @@ class AddDecesedPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
-              SizedBox(height: 2.625),
+              SizedBox(height: 1.625),
 
               // Icon
               Icon(
                 Icons.info_outlined,
                 size: 100,),
 
-              SizedBox(height: 20),
+              SizedBox(height: 50),
+
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.grey[200],
+                      border: Border.all(color: Colors.white),
+                      borderRadius: BorderRadius.circular(12)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
+                    child: TextField(
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Graveyard name',
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
+              SizedBox(height: 12.5),
 
               // email textfield
               Padding(
@@ -35,7 +115,7 @@ class AddDecesedPage extends StatelessWidget {
                     child: TextField(
                       decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Name'
+                          hintText: 'Place Nr.'
                       ),
                     ),
                   ),
@@ -49,7 +129,7 @@ class AddDecesedPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
                   decoration: BoxDecoration(
-                       color: Colors.grey[200],
+                      color: Colors.grey[200],
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12)
                   ),
@@ -59,7 +139,7 @@ class AddDecesedPage extends StatelessWidget {
                       obscureText: true,
                       decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Last name'
+                          hintText: 'Name'
                       ),
                     ),
                   ),
@@ -82,7 +162,7 @@ class AddDecesedPage extends StatelessWidget {
                     child: TextField(
                       decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: 'Personal code'
+                          hintText: 'Last Name'
                       ),
                     ),
                   ),
@@ -138,61 +218,51 @@ class AddDecesedPage extends StatelessWidget {
               SizedBox(height: 12.5),
 
               // Sex textfield
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(12)
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Funeral day',
-                      ),
-                    ),
-                  ),
-                ),
-              ),
 
               SizedBox(height: 12.5),
 
               // sign in button
-              GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AddDecesedPagePart2()));
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(
-                      color: Colors.green,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Center(
-                      child: Text('Next',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18,
-                        ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Container(
+                  padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Center(
+                    child: Text('Add',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
                       ),
                     ),
                   ),
                 ),
               ),
 
-              SizedBox(height: 17.5),
+              SizedBox(height: 1.5),
 
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: (index) => {
+          if (index == 0 || index == 2) {
+            _navigateBottomBar(index)
+          }
+          else {
+            _showBottomSheet()
+          }
+        },
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home',),
+          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add deceased',),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+        ],
       ),
     );
   }

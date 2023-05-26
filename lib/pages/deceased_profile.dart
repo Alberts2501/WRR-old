@@ -36,16 +36,25 @@ class DeceasedProfilePage extends StatelessWidget {
               children: [
                 ListTile(
                   leading: Icon(Icons.email),
-                  title: Text('georgscmitd@gmail.com'),
+                  title: Text('15 July 1933'),
                 ),
                 ListTile(
                   leading: Icon(Icons.accessibility_new_outlined),
-                  title: Text('270487-12145 (Personal code)'),
+                  title: Text('16 Juny 2019'),
                 ),
                 ListTile(
                   leading: Icon(Icons.output),
-                  title: Text('01-01-2023'),
+                  title: Text('1'),
                 ),
+                ListTile(
+                  leading: Icon(Icons.output),
+                  title: Text('Kalnaroga kapi'),
+                ),
+
+                // Relatives
+
+                // Familiar
+
               ],
             ),
           ),
