@@ -1,0 +1,5 @@
+class User {
+
+  DateTime? registrationDate;
+
+}

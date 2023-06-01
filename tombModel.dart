@@ -1,0 +1,3 @@
+class Tomb {
+  int? placeNr;
+}

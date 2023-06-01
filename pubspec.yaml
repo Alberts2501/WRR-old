@@ -41,6 +41,7 @@ dependencies:
   angel3_validate: ^7.0.1
   angel3_migration: ^7.0.0
   image_picker: ^0.8.7+5
+  dio: ^5.1.2
 
 dev_dependencies:
   flutter_test:

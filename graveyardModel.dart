@@ -1,0 +1,3 @@
+class Graveyard {
+  String? name;
+}
